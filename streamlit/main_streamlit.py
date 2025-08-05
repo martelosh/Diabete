@@ -37,4 +37,4 @@ st.pyplot(fig2)
 
 # Pulsante per passare al form
 if st.button("🧾 Fai il tuo test"):
-    st.switch_page("form_di_autovalutazione.py")
+    st.switch_page("pages/form_di_autovalutazione.py")
