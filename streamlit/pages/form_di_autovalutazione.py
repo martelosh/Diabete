@@ -1,8 +1,11 @@
 import streamlit as st
 import pandas as pd
 import os
+import sys
 
-from utils.model_utils import load_best_model, predict_with_model
+# Aggiunge il path assoluto al modulo
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils import load_best_model, predict_with_model
 
 st.title("📝 Form di autovalutazione del rischio diabete")
 
