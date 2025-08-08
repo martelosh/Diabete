@@ -4,6 +4,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from src.db_utils import create_db_engine
+import sys
+import os
 
 
 st.set_page_config(page_title="Informazioni sul Diabete", layout="wide")
@@ -22,8 +24,26 @@ Esistono vari tipi, ma i principali sono:
 
 st.subheader("📊 Esplora i dati")
 
-# Caricamento dataset
-df = create_db_engine().read_sql_table("diabetes_data", "sqlite:///src/db/diabetes.db")
+from sqlalchemy import create_engine
+
+# 🔹 Rende visibile la cartella principale "Diabete" per importare da src/
+sys.path.append(
+    os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '..')
+    )
+)
+
+from src.db_utils import create_db_engine  # se vuoi ancora usare funzioni MySQL
+
+# 🔹 Connessione a SQLite (modifica il path se serve)
+sqlite_path = os.path.join(os.path.dirname(__file__), '..', 'src', 'db', 'diabetes.db')
+sqlite_url = f"sqlite:///{sqlite_path}"
+
+# Crea l'engine
+engine = create_engine(sqlite_url)
+
+# Legge la tabella in DataFrame
+df = pd.read_sql_table("diabetes_data", con=engine)
 
 # Grafico 1: Distribuzione BMI
 st.write("### Distribuzione del BMI")
