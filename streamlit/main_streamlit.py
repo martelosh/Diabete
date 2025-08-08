@@ -3,6 +3,8 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+from src.db_utils import create_db_engine
+
 
 st.set_page_config(page_title="Informazioni sul Diabete", layout="wide")
 
