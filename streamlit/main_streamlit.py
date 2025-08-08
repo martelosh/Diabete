@@ -23,7 +23,7 @@ Esistono vari tipi, ma i principali sono:
 st.subheader("📊 Esplora i dati")
 
 # Caricamento dataset
-df = pd.read_csv("data/diabete_data.csv")
+df = create_db_engine().read_sql_table("diabetes_data", "sqlite:///src/db/diabetes.db")
 
 # Grafico 1: Distribuzione BMI
 st.write("### Distribuzione del BMI")
